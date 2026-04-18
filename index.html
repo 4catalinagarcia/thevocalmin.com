@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Vocal Minority — Jeff Kohler</title>
+  <meta name="description" content="The Vocal Minority — a memoir by Jeff Kohler. One man's raw, unflinching account of finding his voice against every force that tried to silence it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- COMING SOON BANNER -->
+  <div class="coming-soon-overlay" aria-hidden="true">
+    <div class="coming-soon-ribbon">
+      <span>COMING SOON &nbsp;&mdash;&nbsp; COMING SOON &nbsp;&mdash;&nbsp; COMING SOON &nbsp;&mdash;&nbsp; COMING SOON</span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">THE VOCAL MINORITY</span>
+      <ul class="nav-links">
+        <li><a href="#about-book">The Book</a></li>
+        <li><a href="#about-author">The Author</a></li>
+        <li><a href="#order">Get the Book</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Open menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">&times;</button>
+    <ul>
+      <li><a href="#about-book" class="mobile-link">The Book</a></li>
+      <li><a href="#about-author" class="mobile-link">The Author</a></li>
+      <li><a href="#order" class="mobile-link">Get the Book</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO — typewriter fills the screen -->
+  <section id="hero">
+    <div class="hero-typewriter-bg"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-content">
+      <div class="hero-cover-wrap">
+        <img src="assets/images/cover.jpg" alt="The Vocal Minority book cover" class="hero-cover" />
+      </div>
+      <div class="hero-text">
+        <p class="hero-label">A Memoir</p>
+        <h1 class="hero-title">
+          <span class="title-block">The Vocal</span>
+          <span class="title-block">Minority</span>
+        </h1>
+        <p class="hero-author">by <strong>Jeff Kohler</strong></p>
+        <p class="hero-tagline">
+          <span id="typed-tagline"></span><span class="cursor">|</span>
+        </p>
+        <div class="hero-btns">
+          <a href="#order" class="btn btn-primary">Get the Book</a>
+          <a href="#about-book" class="btn btn-ghost">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- PAPER STRIP — typed page aesthetic -->
+  <section class="paper-strip">
+    <div class="paper-inner">
+      <div class="paper-holes">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="paper-typed">
+        <p class="paper-line">File: <span class="paper-value">The Vocal Minority — Draft 1</span></p>
+        <p class="paper-line">Author: <span class="paper-value">Jeff Kohler</span></p>
+        <p class="paper-line">Subject: <span class="paper-value">A life spent finding — and refusing to lose — a voice.</span></p>
+        <p class="paper-line paper-date">Date: <span class="paper-value" id="paper-date"></span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT THE BOOK -->
+  <section id="about-book">
+    <div class="container">
+      <div class="book-layout">
+        <div class="book-cover-side">
+          <img src="assets/images/cover.jpg" alt="The Vocal Minority" class="book-cover-img" />
+        </div>
+        <div class="book-text-side">
+          <p class="section-label">The Book</p>
+          <h2>What Happens When the World Doesn&rsquo;t Want You to Speak</h2>
+
+          <!-- Typed page card -->
+          <div class="typed-page">
+            <div class="typed-page-header">
+              <span>— page 1 —</span>
+            </div>
+            <p>
+              <em>The Vocal Minority</em> is the raw, unflinching memoir of Jeff Kohler — a man who spent decades navigating institutions, communities, and relationships that had a vested interest in his silence.
+            </p>
+            <p>
+              From the halls of power to the margins of society, Jeff&rsquo;s story is one of hard-won identity, relentless truth-telling, and the cost that comes with refusing to disappear.
+            </p>
+            <p>
+              This is not a comfortable book. It was not a comfortable life. But it is an honest one.
+            </p>
+          </div>
+
+          <div class="book-details">
+            <div class="detail-item">
+              <span class="detail-label">Genre</span>
+              <span class="detail-value">Memoir / Narrative Nonfiction</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Author</span>
+              <span class="detail-value">Jeff Kohler</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Status</span>
+              <span class="detail-value">Coming Soon</span>
+            </div>
+          </div>
+          <a href="#order" class="btn btn-primary">Pre-Order / Notify Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPEWRITER FULL-BLEED INTERLUDE -->
+  <section class="typewriter-interlude">
+    <div class="typewriter-interlude-bg"></div>
+    <div class="typewriter-interlude-overlay"></div>
+    <div class="typewriter-interlude-content">
+      <p class="interlude-typed"><span id="interlude-text"></span><span class="cursor">|</span></p>
+    </div>
+  </section>
+
+  <!-- ABOUT THE AUTHOR -->
+  <section id="about-author">
+    <div class="container author-layout">
+      <div class="author-photo-wrap">
+        <img src="assets/images/JeffKohler.jpg" alt="Jeff Kohler, author" class="author-photo" />
+        <div class="author-photo-frame"></div>
+        <div class="author-film-strip">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="author-text">
+        <p class="section-label">The Author</p>
+        <h2>Jeff Kohler</h2>
+
+        <div class="typed-page author-page">
+          <div class="typed-page-header"><span>— bio —</span></div>
+          <p>
+            Jeff Kohler is a writer, advocate, and lifelong truth-teller. Over the course of his life, he has moved through worlds that rarely overlap — finding himself at the intersection of politics, community, and personal identity.
+          </p>
+          <p>
+            <em>The Vocal Minority</em> is his first book — a memoir years in the making and impossible to contain any longer.
+          </p>
+          <p>
+            Jeff writes about the experiences that shaped him, the systems that tried to define him, and the voice he refused to surrender.
+          </p>
+        </div>
+
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER / CTA — on paper texture -->
+  <section id="order" class="paper-section">
+    <div class="paper-texture-overlay"></div>
+    <div class="container order-inner">
+      <p class="section-label dark-label">Get the Book</p>
+      <h2 class="order-title">Don&rsquo;t Miss <em>The Vocal Minority</em></h2>
+      <p class="order-sub">
+        Sign up to be notified the moment the book is available — and get exclusive updates from Jeff as he completes his memoir.
+      </p>
+      <form class="notify-form" id="notifyForm" action="#" method="post">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name" required autocomplete="name" />
+          <input type="email" name="email" placeholder="Your Email Address" required autocomplete="email" />
+          <button type="submit" class="btn btn-dark">Notify Me</button>
+        </div>
+        <p class="form-note">No spam, ever. Just a note when the book drops.</p>
+      </form>
+      <div class="order-success" id="orderSuccess">
+        <p>&#10003; You&rsquo;re on the list. We&rsquo;ll be in touch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container contact-inner">
+      <p class="section-label">Contact</p>
+      <h2>Reach Out</h2>
+      <p class="contact-sub">
+        For media inquiries, speaking engagements, or just to say hello — Jeff wants to hear from you.
+      </p>
+      <form class="contact-form" id="contactForm" action="#" method="post">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+          <select name="subject">
+            <option value="" disabled selected>Subject</option>
+            <option value="media">Media Inquiry</option>
+            <option value="speaking">Speaking Engagement</option>
+            <option value="general">General Message</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea name="message" placeholder="Your message..." rows="5" required></textarea>
+        </div>
+        <div class="form-group captcha-group">
+          <div class="captcha-box">
+            <span class="captcha-label">Prove you&rsquo;re human &mdash;</span>
+            <span class="captcha-challenge" id="captchaChallenge"></span>
+            <input type="text" id="captchaAnswer" name="captcha" placeholder="Answer" autocomplete="off" required maxlength="4" />
+          </div>
+          <p class="captcha-error" id="captchaError">Incorrect answer. Please try again.</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+      <div class="contact-success" id="contactSuccess">
+        <p>&#10003; Message sent. Jeff will be in touch soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-typewriter-bar">
+      <div class="footer-tw-bg"></div>
+      <div class="footer-tw-overlay"></div>
+      <p class="footer-tw-text">&#8220; The truth doesn&#8217;t care if you&#8217;re ready to hear it. &#8221;</p>
+    </div>
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <p class="footer-title">THE VOCAL MINORITY</p>
+        <p class="footer-byline">A memoir by Jeff Kohler</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="#about-book">The Book</a>
+        <a href="#about-author">The Author</a>
+        <a href="#order">Get the Book</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; <span id="year"></span> Jeff Kohler. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
