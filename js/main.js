@@ -115,6 +115,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const input = document.getElementById('captchaAnswer');
   const error = document.getElementById('captchaError');
+
   if (parseInt(input.value, 10) !== captchaAnswer) {
     error.classList.add('visible');
     input.value = '';
@@ -123,8 +124,35 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     return;
   }
   error.classList.remove('visible');
-  this.style.display = 'none';
-  document.getElementById('contactSuccess').classList.add('show');
+
+  const form = this;
+  const data = new FormData(form);
+  data.delete('captcha'); // don't send the captcha field to Formspree
+
+  const btn = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(res => {
+    if (res.ok) {
+      form.style.display = 'none';
+      document.getElementById('contactSuccess').classList.add('show');
+    } else {
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  })
+  .catch(() => {
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+    alert('Network error. Please check your connection and try again.');
+  });
 });
 
 // Footer year
