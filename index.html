@@ -94,6 +94,9 @@ body {
    ALERT BAR
 ══════════════════════════════════════════ */
 .alert-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 101;
   background: var(--red-dark);
   border-bottom: 1px solid rgba(255,255,255,0.1);
   text-align: center;
@@ -111,7 +114,7 @@ body {
 ══════════════════════════════════════════ */
 #navbar {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 36px; left: 0; right: 0;
   z-index: 100;
   padding: 1.1rem 2.5rem;
   background: transparent;
