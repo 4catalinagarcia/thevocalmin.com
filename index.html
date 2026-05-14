@@ -7,26 +7,958 @@
   <meta name="description" content="The Vocal Minority — a memoir by Jeff Kohler. One man's raw, unflinching account of finding his voice against every force that tried to silence it." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── Tokens ── */
+:root {
+  --black:        #080808;
+  --dark:         #0d0d0d;
+  --dark-2:       #131313;
+  --dark-3:       #1a1a1a;
+  --dark-4:       #222;
+  --border:       #232323;
+  --border-mid:   #303030;
+  --border-light: #3d3d3d;
+  --white:        #f0f0f0;
+  --white-dim:    #999;
+  --white-dimmer: #555;
+  --red:          #c0392b;
+  --red-bright:   #e74c3c;
+  --red-dark:     #8b1515;
+  --display:      'Barlow Condensed', sans-serif;
+  --body:         'Inter', sans-serif;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* ── Label ── */
+.label {
+  font-family: var(--body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.8rem 2.25rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+.btn-red   { background: var(--red);   color: var(--white); border-color: var(--red); }
+.btn-red:hover { background: var(--red-bright); border-color: var(--red-bright); }
+.btn-outline { background: transparent; color: var(--white); border-color: var(--border-light); }
+.btn-outline:hover { border-color: var(--white); }
+.btn-white  { background: var(--white); color: var(--black); border-color: var(--white); }
+.btn-white:hover { background: #d0d0d0; border-color: #d0d0d0; }
+.btn-dark   { background: var(--black); color: var(--white); border-color: var(--white); }
+.btn-dark:hover { background: var(--white); color: var(--black); }
+
+/* ── Scroll Reveal ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ══════════════════════════════════════════
+   ALERT BAR
+══════════════════════════════════════════ */
+.alert-bar {
+  background: var(--red-dark);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.1rem 2.5rem;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s, border-color 0.3s, padding 0.3s;
+}
+#navbar.scrolled {
+  background: rgba(8,8,8,0.97);
+  border-bottom-color: var(--border);
+  padding: 0.7rem 2.5rem;
+}
+.nav-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+}
+.nav-links a {
+  font-family: var(--body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  transition: color 0.18s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ── Mobile Menu ── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 200;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.mobile-menu.open { display: flex; }
+.mobile-close {
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.mobile-menu ul { list-style: none; text-align: center; }
+.mobile-menu li { margin: 1.1rem 0; }
+.mobile-link {
+  font-family: var(--display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: color 0.18s;
+}
+.mobile-link:hover { color: var(--red); }
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 7rem 2.5rem 5rem;
+}
+
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(60%) brightness(0.28) contrast(1.15);
+  pointer-events: none;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(8,8,8,0.6) 0%, rgba(8,8,8,0.1) 60%),
+    linear-gradient(to bottom, rgba(8,8,8,0.5) 0%, transparent 30%, rgba(8,8,8,0.7) 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  max-width: 1080px;
+  width: 100%;
+}
+
+/* Cover */
+.hero-cover-wrap { flex-shrink: 0; }
+.hero-cover {
+  width: 280px;
+  box-shadow:
+    0 0 0 1px rgba(192,57,43,0.3),
+    0 30px 80px rgba(0,0,0,0.95),
+    0 0 60px rgba(192,57,43,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.hero-cover:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 0 1px rgba(192,57,43,0.5),
+    0 40px 100px rgba(0,0,0,1),
+    0 0 80px rgba(192,57,43,0.25);
+}
+
+/* Text */
+.hero-text { flex: 1; }
+.hero-eyebrow {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 2px;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(4rem, 8vw, 7.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.hero-author {
+  font-family: var(--display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-bottom: 1.75rem;
+}
+
+.hero-divider {
+  width: 48px;
+  height: 2px;
+  background: var(--border-light);
+  margin-bottom: 1.75rem;
+}
+
+.hero-tagline {
+  font-family: var(--body);
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240,240,240,0.7);
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+}
+.hero-scroll span {
+  font-family: var(--body);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--white-dimmer);
+}
+.hero-scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--border-light), transparent);
+  animation: scrollpulse 2s infinite;
+}
+@keyframes scrollpulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+/* ══════════════════════════════════════════
+   METADATA STRIP
+══════════════════════════════════════════ */
+.meta-strip {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.meta-strip-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.meta-item {
+  padding: 1.75rem 0;
+  border-right: 1px solid var(--border);
+  padding-left: 2rem;
+}
+.meta-item:first-child { padding-left: 0; border-left: none; }
+.meta-item:last-child { border-right: none; }
+.meta-label {
+  font-family: var(--body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.3rem;
+}
+.meta-value {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
+
+/* ══════════════════════════════════════════
+   ABOUT THE BOOK
+══════════════════════════════════════════ */
+#about-book {
+  padding: 8rem 2.5rem;
+  background: var(--dark);
+}
+.book-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.book-cover-col img {
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(192,57,43,0.2);
+  position: sticky;
+  top: 7rem;
+}
+.book-text-col h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+.book-body {
+  color: rgba(240,240,240,0.72);
+  font-size: 0.98rem;
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+}
+.book-body p { margin-bottom: 1em; }
+.book-body p:last-child { margin-bottom: 0; }
+.book-body em { color: var(--white); font-style: italic; }
+
+.book-meta {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+}
+.book-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.book-meta-key {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.book-meta-val {
+  font-family: var(--display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--white-dim);
+}
+
+/* ══════════════════════════════════════════
+   PULL QUOTE
+══════════════════════════════════════════ */
+.pull-quote {
+  background: var(--black);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 8rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.pull-quote-mark {
+  font-family: Georgia, serif;
+  font-size: 18rem;
+  line-height: 0.6;
+  color: var(--red-dark);
+  opacity: 0.18;
+  position: absolute;
+  top: 4rem; left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+.pull-quote-text {
+  font-family: var(--display);
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--white);
+  max-width: 820px;
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 1;
+}
+.pull-quote-attr {
+  font-family: var(--body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-dimmer);
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════
+   ABOUT THE AUTHOR
+══════════════════════════════════════════ */
+#about-author {
+  padding: 8rem 2.5rem;
+  background: var(--dark-2);
+}
+.author-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.author-photo-col { position: relative; }
+.author-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(30%) contrast(1.1);
+  display: block;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+}
+.author-photo-border {
+  position: absolute;
+  top: 16px; left: 16px;
+  right: -16px; bottom: -16px;
+  border: 1px solid var(--red-dark);
+  pointer-events: none;
+  z-index: -1;
+}
+.author-text-col h2 {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+.author-bio {
+  color: rgba(240,240,240,0.7);
+  font-size: 0.98rem;
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+}
+.author-bio p { margin-bottom: 1em; }
+.author-bio p:last-child { margin-bottom: 0; }
+.author-bio em { color: var(--white); font-style: italic; }
+
+/* ══════════════════════════════════════════
+   PRAISE
+══════════════════════════════════════════ */
+#praise {
+  padding: 8rem 2.5rem;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+.praise-header {
+  max-width: 1120px;
+  margin: 0 auto 4rem;
+}
+.praise-header h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.praise-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.praise-card {
+  background: var(--dark-2);
+  padding: 2.5rem;
+  position: relative;
+}
+.praise-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--red-dark);
+}
+.praise-quote {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(240,240,240,0.7);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.praise-source {
+  font-family: var(--body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+/* ══════════════════════════════════════════
+   EXCERPT
+══════════════════════════════════════════ */
+#excerpt {
+  padding: 8rem 2.5rem;
+  background: var(--black);
+  border-top: 1px solid var(--border);
+}
+.excerpt-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.excerpt-inner h2 {
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 2.5rem;
+}
+.excerpt-block {
+  border-left: 3px solid var(--red);
+  padding: 2.5rem 2.5rem;
+  background: var(--dark-2);
+  position: relative;
+  overflow: hidden;
+}
+.excerpt-block-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white-dimmer);
+  margin-bottom: 1.75rem;
+  display: block;
+}
+.excerpt-text {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: rgba(240,240,240,0.78);
+}
+.excerpt-text p { margin-bottom: 1.2em; }
+.excerpt-text p:last-child { margin-bottom: 0; }
+.excerpt-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, var(--dark-2));
+  pointer-events: none;
+}
+.excerpt-cta { margin-top: 2rem; }
+
+/* ══════════════════════════════════════════
+   ORDER / CTA
+══════════════════════════════════════════ */
+#order {
+  background: var(--red-dark);
+  padding: 7rem 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
+#order::before {
+  content: 'ORDER';
+  position: absolute;
+  right: -2rem; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--display);
+  font-size: 22vw;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.order-inner {
+  max-width: 680px;
+  position: relative;
+  z-index: 1;
+}
+.order-inner h2 {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.order-sub {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+.notify-form .form-row {
+  display: flex;
+  gap: 0;
+}
+.notify-form input {
+  font-family: var(--body);
+  font-size: 0.9rem;
+  padding: 0.9rem 1.25rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-right: none;
+  color: var(--white);
+  flex: 1;
+  outline: none;
+  transition: background 0.18s;
+}
+.notify-form input::placeholder { color: rgba(255,255,255,0.4); }
+.notify-form input:focus { background: rgba(255,255,255,0.15); }
+.notify-form input + input {
+  border-left: 1px solid rgba(255,255,255,0.25);
+  border-right: none;
+}
+.notify-form .btn { flex-shrink: 0; border-radius: 0; }
+.form-note {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+}
+.order-success {
+  display: none;
+  margin-top: 1.5rem;
+  font-family: var(--display);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.9);
+}
+.order-success.show { display: block; }
+
+/* ══════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════ */
+#contact {
+  padding: 8rem 2.5rem;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+.contact-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.contact-inner h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+.contact-sub {
+  color: rgba(240,240,240,0.55);
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+.form-group { margin-bottom: 0.75rem; }
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  font-family: var(--body);
+  font-size: 0.9rem;
+  padding: 0.85rem 1.25rem;
+  background: var(--dark-3);
+  border: 1px solid var(--border-mid);
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.18s;
+  appearance: none;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus { border-color: var(--red); }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: var(--white-dimmer); }
+.contact-form select { cursor: pointer; }
+.contact-form select option { background: var(--dark-3); }
+.contact-form textarea { resize: vertical; min-height: 130px; }
+
+.captcha-group { margin-top: 0.25rem; }
+.captcha-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  background: var(--dark-3);
+  border: 1px solid var(--border-mid);
+  padding: 0.85rem 1.25rem;
+  transition: border-color 0.18s;
+}
+.captcha-box:focus-within { border-color: var(--red); }
+.captcha-label {
+  font-size: 0.78rem;
+  color: var(--white-dimmer);
+  white-space: nowrap;
+}
+.captcha-challenge {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-mid);
+  padding: 0.2rem 0.75rem;
+  user-select: none;
+}
+.captcha-box input {
+  font-size: 0.9rem;
+  padding: 0.2rem 0.75rem;
+  background: var(--dark-4);
+  border: 1px solid var(--border-mid);
+  color: var(--white);
+  width: 80px;
+  outline: none;
+  transition: border-color 0.18s;
+}
+.captcha-box input:focus { border-color: var(--red); }
+.captcha-box input::placeholder { color: var(--white-dimmer); }
+.captcha-error {
+  font-size: 0.75rem;
+  color: var(--red-bright);
+  margin-top: 0.4rem;
+  display: none;
+}
+.captcha-error.visible { display: block; }
+.contact-success {
+  display: none;
+  margin-top: 1.5rem;
+  font-family: var(--display);
+  font-size: 1rem;
+  color: #5cb85c;
+}
+.contact-success.show { display: block; }
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+#footer {
+  background: var(--black);
+  border-top: 1px solid var(--border);
+}
+.footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-logo-col { display: flex; flex-direction: column; gap: 0.2rem; }
+.footer-title {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.footer-byline {
+  font-size: 0.78rem;
+  color: var(--white-dimmer);
+  font-style: italic;
+}
+.footer-nav {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer-nav a {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-dimmer);
+  transition: color 0.18s;
+}
+.footer-nav a:hover { color: var(--white); }
+.footer-copy {
+  font-size: 0.72rem;
+  color: var(--white-dimmer);
+  opacity: 0.5;
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+
+  .hero-content { flex-direction: column; text-align: center; gap: 3rem; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-tagline { margin-left: auto; margin-right: auto; }
+  .hero-btns { justify-content: center; }
+  .hero-cover { width: 220px; }
+
+  .meta-strip-inner { grid-template-columns: 1fr 1fr; }
+  .meta-item:nth-child(2) { border-right: none; }
+  .meta-item { padding-left: 1.5rem; }
+  .meta-item:first-child { padding-left: 0; }
+
+  .book-grid  { grid-template-columns: 1fr; gap: 3rem; }
+  .book-cover-col img { width: 180px; margin: 0 auto; position: static; }
+  .author-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .author-photo { max-width: 300px; width: 100%; aspect-ratio: 3/4; }
+  .author-photo-border { display: none; }
+  .praise-grid { grid-template-columns: 1fr; }
+
+  .notify-form .form-row { flex-direction: column; }
+  .notify-form input { border-right: 1px solid rgba(255,255,255,0.25); }
+  .notify-form input + input { border-left: 1px solid rgba(255,255,255,0.25); }
+
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+}
+
+@media (max-width: 540px) {
+  #about-book, #about-author, #praise, #excerpt, #order, #contact { padding: 5rem 1.5rem; }
+  .meta-strip-inner { grid-template-columns: 1fr 1fr; padding: 0 1.5rem; }
+  .pull-quote { padding: 5rem 1.5rem; }
+  .excerpt-block { padding: 2rem 1.5rem; }
+  .book-meta { grid-template-columns: 1fr; }
+  .hero-title { font-size: clamp(3.2rem, 12vw, 4.5rem); }
+}
+
+  </style>
 </head>
 <body>
 
-  <!-- COMING SOON BANNER -->
-  <div class="coming-soon-overlay" aria-hidden="true">
-    <div class="coming-soon-ribbon">
-      <span>COMING SOON &nbsp;&mdash;&nbsp; COMING SOON &nbsp;&mdash;&nbsp; COMING SOON &nbsp;&mdash;&nbsp; COMING SOON</span>
-    </div>
-  </div>
+  <!-- ALERT BAR -->
+  <div class="alert-bar">Coming Soon</div>
 
   <!-- NAV -->
   <nav id="navbar">
     <div class="nav-inner">
-      <span class="nav-logo">THE VOCAL MINORITY</span>
+      <span class="nav-logo">The Vocal Minority</span>
       <ul class="nav-links">
         <li><a href="#about-book">The Book</a></li>
+        <li><a href="#excerpt">Excerpt</a></li>
         <li><a href="#about-author">The Author</a></li>
-        <li><a href="#order">Get the Book</a></li>
+        <li><a href="#order">Order</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Open menu">&#9776;</button>
@@ -37,180 +969,223 @@
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-close" id="mobileClose">&times;</button>
     <ul>
-      <li><a href="#about-book" class="mobile-link">The Book</a></li>
+      <li><a href="#about-book"   class="mobile-link">The Book</a></li>
+      <li><a href="#excerpt"      class="mobile-link">Excerpt</a></li>
       <li><a href="#about-author" class="mobile-link">The Author</a></li>
-      <li><a href="#order" class="mobile-link">Get the Book</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
+      <li><a href="#order"        class="mobile-link">Order</a></li>
+      <li><a href="#contact"      class="mobile-link">Contact</a></li>
     </ul>
   </div>
 
-  <!-- HERO — typewriter fills the screen -->
+  <!-- HERO -->
   <section id="hero">
-    <div class="hero-typewriter-bg"></div>
-    <div class="hero-vignette"></div>
+    <video class="hero-video-bg" autoplay muted loop playsinline preload="auto">
+      <source src="assets/images/TheVocalMinority.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
       <div class="hero-cover-wrap">
         <img src="assets/images/TheVocalMinorityCover.jpg" alt="The Vocal Minority book cover" class="hero-cover" />
       </div>
       <div class="hero-text">
-        <p class="hero-label">A Memoir</p>
-        <h1 class="hero-title">
-          <span class="title-block">The Vocal</span>
-          <span class="title-block">Minority</span>
-        </h1>
-        <p class="hero-author">by <strong>Jeff Kohler</strong></p>
-        <p class="hero-tagline">
-          <span id="typed-tagline"></span><span class="cursor">|</span>
-        </p>
+        <p class="hero-eyebrow">A Memoir</p>
+        <h1 class="hero-title">The Vocal<br>Minority</h1>
+        <p class="hero-author">Jeff Kohler</p>
+        <div class="hero-divider"></div>
+        <p class="hero-tagline">Some voices are meant to be silenced. This is the story of one that refused.</p>
         <div class="hero-btns">
-          <a href="#order" class="btn btn-primary">Get the Book</a>
-          <a href="#about-book" class="btn btn-ghost">Learn More</a>
+          <a href="#order"   class="btn btn-red">Order Now</a>
+          <a href="#excerpt" class="btn btn-outline">Read an Excerpt</a>
         </div>
       </div>
     </div>
-    <div class="hero-scroll-hint">
+
+    <div class="hero-scroll">
       <span>Scroll</span>
-      <div class="scroll-line"></div>
+      <div class="hero-scroll-line"></div>
     </div>
   </section>
 
-  <!-- PAPER STRIP — typed page aesthetic -->
-  <section class="paper-strip">
-    <div class="paper-inner">
-      <div class="paper-holes">
-        <span></span><span></span><span></span>
+  <!-- METADATA STRIP -->
+  <div class="meta-strip">
+    <div class="meta-strip-inner">
+      <div class="meta-item">
+        <p class="meta-label">Genre</p>
+        <p class="meta-value">Memoir</p>
       </div>
-      <div class="paper-typed">
-        <p class="paper-line">File: <span class="paper-value">The Vocal Minority — Draft 1</span></p>
-        <p class="paper-line">Author: <span class="paper-value">Jeff Kohler</span></p>
-        <p class="paper-line">Subject: <span class="paper-value">A life spent finding — and refusing to lose — a voice.</span></p>
-        <p class="paper-line paper-date">Date: <span class="paper-value" id="paper-date"></span></p>
+      <div class="meta-item">
+        <p class="meta-label">Author</p>
+        <p class="meta-value">Jeff Kohler</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Format</p>
+        <p class="meta-value">Hardcover &amp; Digital</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Status</p>
+        <p class="meta-value">Available Now</p>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- ABOUT THE BOOK -->
   <section id="about-book">
-    <div class="container">
-      <div class="book-layout">
-        <div class="book-cover-side">
-          <img src="assets/images/TheVocalMinorityCover.jpg" alt="The Vocal Minority" class="book-cover-img" />
+    <div class="book-grid">
+      <div class="book-cover-col reveal">
+        <img src="assets/images/TheVocalMinorityCover.jpg" alt="The Vocal Minority" />
+      </div>
+      <div class="book-text-col reveal">
+        <span class="label">The Book</span>
+        <h2>What Happens When the World Doesn&rsquo;t Want You to Speak</h2>
+        <div class="book-body">
+          <p>
+            <em>The Vocal Minority</em> is the raw, unflinching memoir of Jeff Kohler &mdash; a man who spent decades navigating institutions, communities, and relationships that had a vested interest in his silence.
+          </p>
+          <p>
+            From the halls of power to the margins of society, Jeff&rsquo;s story is one of hard-won identity, relentless truth-telling, and the cost that comes with refusing to disappear.
+          </p>
+          <p>
+            This is not a comfortable book. It was not a comfortable life. But it is an honest one.
+          </p>
         </div>
-        <div class="book-text-side">
-          <p class="section-label">The Book</p>
-          <h2>What Happens When the World Doesn&rsquo;t Want You to Speak</h2>
-
-          <!-- Typed page card -->
-          <div class="typed-page">
-            <div class="typed-page-header">
-              <span>— page 1 —</span>
-            </div>
-            <p>
-              <em>The Vocal Minority</em> is the raw, unflinching memoir of Jeff Kohler — a man who spent decades navigating institutions, communities, and relationships that had a vested interest in his silence.
-            </p>
-            <p>
-              From the halls of power to the margins of society, Jeff&rsquo;s story is one of hard-won identity, relentless truth-telling, and the cost that comes with refusing to disappear.
-            </p>
-            <p>
-              This is not a comfortable book. It was not a comfortable life. But it is an honest one.
-            </p>
+        <div class="book-meta">
+          <div class="book-meta-item">
+            <span class="book-meta-key">Genre</span>
+            <span class="book-meta-val">Memoir / Narrative Nonfiction</span>
           </div>
-
-          <div class="book-details">
-            <div class="detail-item">
-              <span class="detail-label">Genre</span>
-              <span class="detail-value">Memoir / Narrative Nonfiction</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-label">Author</span>
-              <span class="detail-value">Jeff Kohler</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-label">Status</span>
-              <span class="detail-value">Coming Soon</span>
-            </div>
+          <div class="book-meta-item">
+            <span class="book-meta-key">Author</span>
+            <span class="book-meta-val">Jeff Kohler</span>
           </div>
-          <a href="#order" class="btn btn-primary">Pre-Order / Notify Me</a>
+          <div class="book-meta-item">
+            <span class="book-meta-key">Publisher</span>
+            <span class="book-meta-val">Independent</span>
+          </div>
+          <div class="book-meta-item">
+            <span class="book-meta-key">Available</span>
+            <span class="book-meta-val">Coming Soon</span>
+          </div>
         </div>
+        <a href="#order" class="btn btn-red">Order Your Copy</a>
       </div>
     </div>
   </section>
 
-  <!-- TYPEWRITER FULL-BLEED INTERLUDE -->
-  <section class="typewriter-interlude">
-    <div class="typewriter-interlude-bg"></div>
-    <div class="typewriter-interlude-overlay"></div>
-    <div class="typewriter-interlude-content">
-      <p class="interlude-typed"><span id="interlude-text"></span><span class="cursor">|</span></p>
-    </div>
-  </section>
+  <!-- PULL QUOTE -->
+  <div class="pull-quote">
+    <div class="pull-quote-mark">&ldquo;</div>
+    <p class="pull-quote-text reveal">
+      The truth doesn&rsquo;t care if you&rsquo;re ready to hear it.
+    </p>
+    <p class="pull-quote-attr reveal">&mdash; Jeff Kohler, <em>The Vocal Minority</em></p>
+  </div>
 
   <!-- ABOUT THE AUTHOR -->
   <section id="about-author">
-    <div class="container author-layout">
-      <div class="author-photo-wrap">
+    <div class="author-grid">
+      <div class="author-photo-col reveal">
         <img src="assets/images/JeffKohlerHeadshot.jpg" alt="Jeff Kohler, author" class="author-photo" />
-        <div class="author-photo-frame"></div>
-        <div class="author-film-strip">
-          <span></span><span></span><span></span><span></span><span></span><span></span>
-        </div>
+        <div class="author-photo-border"></div>
       </div>
-      <div class="author-text">
-        <p class="section-label">The Author</p>
+      <div class="author-text-col reveal">
+        <span class="label">The Author</span>
         <h2>Jeff Kohler</h2>
-
-        <div class="typed-page author-page">
-          <div class="typed-page-header"><span>— bio —</span></div>
+        <div class="author-bio">
           <p>
-            Jeff Kohler is a writer, advocate, and lifelong truth-teller. Over the course of his life, he has moved through worlds that rarely overlap — finding himself at the intersection of politics, community, and personal identity.
+            Jeff Kohler is a writer, advocate, and lifelong truth-teller. Over the course of his life he has moved through worlds that rarely overlap &mdash; finding himself at the intersection of politics, community, and personal identity.
           </p>
           <p>
-            <em>The Vocal Minority</em> is his first book — a memoir years in the making and impossible to contain any longer.
+            <em>The Vocal Minority</em> is his first book &mdash; a memoir years in the making and impossible to contain any longer.
           </p>
           <p>
             Jeff writes about the experiences that shaped him, the systems that tried to define him, and the voice he refused to surrender.
           </p>
         </div>
-
-        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
       </div>
     </div>
   </section>
 
-  <!-- ORDER / CTA — on paper texture -->
-  <section id="order" class="paper-section">
-    <div class="paper-texture-overlay"></div>
-    <div class="container order-inner">
-      <p class="section-label dark-label">Get the Book</p>
-      <h2 class="order-title">Don&rsquo;t Miss <em>The Vocal Minority</em></h2>
-      <p class="order-sub">
-        Sign up to be notified the moment the book is available — and get exclusive updates from Jeff as he completes his memoir.
-      </p>
-      <form class="notify-form" id="notifyForm" action="#" method="post">
-        <div class="form-row">
-          <input type="text" name="name" placeholder="Your Name" required autocomplete="name" />
-          <input type="email" name="email" placeholder="Your Email Address" required autocomplete="email" />
-          <button type="submit" class="btn btn-dark">Notify Me</button>
+  <!-- PRAISE -->
+  <section id="praise">
+    <div class="praise-header reveal">
+      <span class="label">Praise</span>
+      <h2>What Readers Are Saying</h2>
+    </div>
+    <div class="praise-grid">
+      <div class="praise-card reveal">
+        <p class="praise-quote">Kohler writes with the honesty of someone who has nothing left to prove and everything left to say. A necessary memoir for our times.</p>
+        <p class="praise-source">Early Reader</p>
+      </div>
+      <div class="praise-card reveal">
+        <p class="praise-quote">Unflinching, urgent, and deeply human. <em>The Vocal Minority</em> is the kind of book that finds you exactly when you need it.</p>
+        <p class="praise-source">Advance Copy Reader</p>
+      </div>
+      <div class="praise-card reveal">
+        <p class="praise-quote">Jeff Kohler doesn&rsquo;t just tell his story &mdash; he demands you sit with it. You will not leave unchanged.</p>
+        <p class="praise-source">Beta Reader</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXCERPT -->
+  <section id="excerpt">
+    <div class="excerpt-inner reveal">
+      <span class="label">Read an Excerpt</span>
+      <h2>A Glimpse Inside the Pages</h2>
+      <div class="excerpt-block">
+        <span class="excerpt-block-label">From the Opening</span>
+        <div class="excerpt-text">
+          <p>
+            There is a particular kind of silence that is manufactured. Not the silence of an empty room, or the silence between words when someone is thinking. This silence is built &mdash; brick by brick, policy by policy, dismissal by dismissal &mdash; by people who need you to disappear.
+          </p>
+          <p>
+            I spent the better part of my life learning to recognize it. And then I spent the rest of it refusing to honor it.
+          </p>
+          <p>
+            This is not a book about being a victim. It is a book about survival in the truest sense of the word: not merely enduring, but insisting on being seen.
+          </p>
         </div>
-        <p class="form-note">No spam, ever. Just a note when the book drops.</p>
-      </form>
-      <div class="order-success" id="orderSuccess">
-        <p>&#10003; You&rsquo;re on the list. We&rsquo;ll be in touch.</p>
+        <div class="excerpt-fade"></div>
+      </div>
+      <div class="excerpt-cta">
+        <a href="#order" class="btn btn-red">Read the Full Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section id="order">
+    <div class="container">
+      <div class="order-inner reveal">
+        <span class="label" style="color:rgba(255,255,255,0.5);">Get Notified</span>
+        <h2>Get Notified</h2>
+        <p class="order-sub">Sign up to be the first to know when <em>The Vocal Minority</em> is available &mdash; and get exclusive updates from Jeff along the way.</p>
+        <form class="notify-form" id="notifyForm" action="https://formspree.io/f/jeffkohler09@gmail.com" method="post">
+          <div class="form-row">
+            <input type="text"  name="name"  placeholder="Your Name"          required autocomplete="name" />
+            <input type="email" name="email" placeholder="Your Email Address"  required autocomplete="email" />
+            <button type="submit" class="btn btn-dark">Notify Me</button>
+          </div>
+          <p class="form-note">No spam. Just the information you need.</p>
+        </form>
+        <div class="order-success" id="orderSuccess">
+          <p>&#10003;&nbsp; You&rsquo;re on the list. We&rsquo;ll be in touch.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
-    <div class="container contact-inner">
-      <p class="section-label">Contact</p>
+    <div class="contact-inner reveal">
+      <span class="label">Contact</span>
       <h2>Reach Out</h2>
-      <p class="contact-sub">
-        For media inquiries, speaking engagements, or just to say hello — Jeff wants to hear from you.
-      </p>
+      <p class="contact-sub">For media inquiries, speaking engagements, or just to say hello &mdash; Jeff wants to hear from you.</p>
       <form class="contact-form" id="contactForm" action="https://formspree.io/f/jeffkohler09@gmail.com" method="post">
         <div class="form-group">
-          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="text"  name="name"  placeholder="Your Name"  required />
         </div>
         <div class="form-group">
           <input type="email" name="email" placeholder="Your Email" required />
@@ -234,36 +1209,142 @@
           </div>
           <p class="captcha-error" id="captchaError">Incorrect answer. Please try again.</p>
         </div>
-        <button type="submit" class="btn btn-primary">Send Message</button>
+        <button type="submit" class="btn btn-red">Send Message</button>
       </form>
       <div class="contact-success" id="contactSuccess">
-        <p>&#10003; Message sent. Jeff will be in touch soon.</p>
+        <p>&#10003;&nbsp; Message sent. Jeff will be in touch soon.</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer id="footer">
-    <div class="footer-typewriter-bar">
-      <div class="footer-tw-bg"></div>
-      <div class="footer-tw-overlay"></div>
-      <p class="footer-tw-text">&#8220; The truth doesn&#8217;t care if you&#8217;re ready to hear it. &#8221;</p>
-    </div>
-    <div class="container footer-inner">
-      <div class="footer-logo">
-        <p class="footer-title">THE VOCAL MINORITY</p>
+    <div class="footer-inner">
+      <div class="footer-logo-col">
+        <p class="footer-title">The Vocal Minority</p>
         <p class="footer-byline">A memoir by Jeff Kohler</p>
       </div>
       <nav class="footer-nav">
         <a href="#about-book">The Book</a>
+        <a href="#excerpt">Excerpt</a>
         <a href="#about-author">The Author</a>
-        <a href="#order">Get the Book</a>
+        <a href="#order">Order</a>
         <a href="#contact">Contact</a>
       </nav>
       <p class="footer-copy">&copy; <span id="year"></span> Jeff Kohler. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu
+    const navToggle  = document.querySelector('.nav-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    document.querySelectorAll('.mobile-link').forEach(l =>
+      l.addEventListener('click', () => mobileMenu.classList.remove('open'))
+    );
+    navToggle.addEventListener('click',  () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Notify form
+    document.getElementById('notifyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(res => {
+        if (res.ok) {
+          form.style.display = 'none';
+          document.getElementById('orderSuccess').classList.add('show');
+        } else {
+          btn.textContent = 'Notify Me'; btn.disabled = false;
+          alert('Something went wrong. Please try again.');
+        }
+      })
+      .catch(() => {
+        btn.textContent = 'Notify Me'; btn.disabled = false;
+        alert('Network error. Please check your connection.');
+      });
+    });
+
+    // CAPTCHA
+    let captchaAnswer = 0;
+    function generateCaptcha() {
+      const a = Math.floor(Math.random() * 12) + 1;
+      const b = Math.floor(Math.random() * 12) + 1;
+      const ops = [
+        { label: `${a} + ${b}`,               answer: a + b },
+        { label: `${a + b} − ${b}`,      answer: a },
+        { label: `${a} × ${b > 5 ? 2 : b}`, answer: a * (b > 5 ? 2 : b) },
+      ];
+      const chosen = ops[Math.floor(Math.random() * ops.length)];
+      captchaAnswer = chosen.answer;
+      const el = document.getElementById('captchaChallenge');
+      if (el) el.textContent = chosen.label + ' =';
+      const inp = document.getElementById('captchaAnswer');
+      if (inp) inp.value = '';
+    }
+    generateCaptcha();
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = document.getElementById('captchaAnswer');
+      const error = document.getElementById('captchaError');
+      if (parseInt(input.value, 10) !== captchaAnswer) {
+        error.classList.add('visible');
+        input.value = '';
+        generateCaptcha();
+        input.focus();
+        return;
+      }
+      error.classList.remove('visible');
+      const form = this;
+      const data = new FormData(form);
+      data.delete('captcha');
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(res => {
+          if (res.ok) {
+            form.style.display = 'none';
+            document.getElementById('contactSuccess').classList.add('show');
+          } else {
+            btn.textContent = 'Send Message'; btn.disabled = false;
+            alert('Something went wrong. Please try again.');
+          }
+        })
+        .catch(() => {
+          btn.textContent = 'Send Message'; btn.disabled = false;
+          alert('Network error. Please check your connection.');
+        });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
 </body>
 </html>

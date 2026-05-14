@@ -1,0 +1,265 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+  .tw-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    font-family: var(--font-sans);
+  }
+
+  .typewriter-body {
+    background: #d6cfc0;
+    border-radius: 18px 18px 10px 10px;
+    padding: 18px 24px 24px;
+    width: 480px;
+    max-width: 100%;
+    border: 2px solid #b0a898;
+    position: relative;
+  }
+
+  .paper-slot {
+    background: #e8e8e0;
+    border-radius: 4px 4px 0 0;
+    height: 28px;
+    margin: 0 auto 8px;
+    width: 320px;
+    border: 1.5px solid #bbb;
+    border-bottom: none;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .paper {
+    background: #fafaf5;
+    width: calc(100% - 12px);
+    margin: 0 6px;
+    height: 200px;
+    position: absolute;
+    bottom: -172px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 8px 12px;
+    box-sizing: border-box;
+  }
+
+  .paper-lines {
+    width: 100%;
+    text-align: center;
+  }
+
+  .typed-text {
+    font-family: 'Special Elite', 'Courier New', monospace;
+    font-size: 15px;
+    color: #1a1a1a;
+    letter-spacing: 2px;
+    display: inline;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 16px;
+    background: #222;
+    vertical-align: text-bottom;
+    margin-left: 1px;
+    animation: blink 0.7s step-end infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .platen-bar {
+    background: linear-gradient(to bottom, #888, #666, #888);
+    height: 12px;
+    border-radius: 6px;
+    margin: 0 auto 10px;
+    width: 340px;
+    border: 1px solid #555;
+  }
+
+  .brand-area {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .brand-name {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #5a5040;
+    letter-spacing: 1px;
+  }
+
+  .model-name {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #6a6050;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .keyboard {
+    background: #c8c0b0;
+    border-radius: 8px;
+    padding: 10px 8px 8px;
+    border: 1px solid #a89880;
+  }
+
+  .key-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+
+  .key {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: #5a7a60;
+    border: 1.5px solid #3d5a42;
+    border-bottom: 3px solid #2e4431;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e8f0e8;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: default;
+    transition: transform 0.05s, border-bottom 0.05s, background 0.05s;
+    user-select: none;
+  }
+
+  .key.pressed {
+    transform: translateY(2px);
+    border-bottom: 1px solid #2e4431;
+    background: #7aaa82;
+  }
+
+  .space-key {
+    width: 140px;
+    height: 28px;
+    border-radius: 4px;
+  }
+
+  .start-btn {
+    margin-top: 1.2rem;
+    padding: 10px 28px;
+    background: transparent;
+    border: 1px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    font-size: 14px;
+    color: var(--color-text-primary);
+    cursor: pointer;
+  }
+
+  .start-btn:hover { background: var(--color-background-secondary); }
+  .start-btn:disabled { opacity: 0.4; cursor: default; }
+</style>
+
+<div class="tw-wrap">
+  <div class="typewriter-body">
+    <div class="paper-slot">
+      <div class="paper" id="paper">
+        <div class="paper-lines">
+          <span class="typed-text" id="typed"></span><span class="cursor" id="cursor" style="display:none"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="platen-bar"></div>
+
+    <div class="brand-area">
+      <div class="brand-name">Remington</div>
+      <div class="model-name">Quiet · Riter</div>
+    </div>
+
+    <div class="keyboard">
+      <div class="key-row">
+        <div class="key" data-k="Q">Q</div><div class="key" data-k="W">W</div><div class="key" data-k="E">E</div><div class="key" data-k="R">R</div><div class="key" data-k="T">T</div><div class="key" data-k="Y">Y</div><div class="key" data-k="U">U</div><div class="key" data-k="I">I</div><div class="key" data-k="O">O</div><div class="key" data-k="P">P</div>
+      </div>
+      <div class="key-row">
+        <div class="key" data-k="A">A</div><div class="key" data-k="S">S</div><div class="key" data-k="D">D</div><div class="key" data-k="F">F</div><div class="key" data-k="G">G</div><div class="key" data-k="H">H</div><div class="key" data-k="J">J</div><div class="key" data-k="K">K</div><div class="key" data-k="L">L</div>
+      </div>
+      <div class="key-row">
+        <div class="key" data-k="Z">Z</div><div class="key" data-k="X">X</div><div class="key" data-k="C">C</div><div class="key" data-k="V">V</div><div class="key" data-k="B">B</div><div class="key" data-k="N">N</div><div class="key" data-k="M">M</div>
+      </div>
+      <div class="key-row">
+        <div class="key space-key" data-k=" "> </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="start-btn" id="startBtn" onclick="startTyping()">Type it out ↗</button>
+</div>
+
+<script>
+const text = "The Vocal Minority";
+let pos = 0;
+let typing = false;
+
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let actx = null;
+
+function playClick() {
+  try {
+    if (!actx) actx = new AudioCtx();
+    const buf = actx.createBuffer(1, actx.sampleRate * 0.05, actx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < data.length; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 4);
+    }
+    const src = actx.createBufferSource();
+    src.buffer = buf;
+    const gain = actx.createGain();
+    gain.gain.setValueAtTime(0.3, actx.currentTime);
+    src.connect(gain);
+    gain.connect(actx.destination);
+    src.start();
+  } catch(e) {}
+}
+
+function pressKey(char) {
+  const k = char.toUpperCase();
+  const el = document.querySelector(`.key[data-k="${char === ' ' ? ' ' : k}"]`);
+  if (el) {
+    el.classList.add('pressed');
+    setTimeout(() => el.classList.remove('pressed'), 120);
+  }
+}
+
+function startTyping() {
+  if (typing) return;
+  typing = true;
+  pos = 0;
+  document.getElementById('typed').textContent = '';
+  document.getElementById('cursor').style.display = 'inline-block';
+  document.getElementById('startBtn').disabled = true;
+  typeNext();
+}
+
+function typeNext() {
+  if (pos >= text.length) {
+    setTimeout(() => {
+      document.getElementById('cursor').style.display = 'none';
+      document.getElementById('startBtn').disabled = false;
+      typing = false;
+    }, 800);
+    return;
+  }
+  const ch = text[pos];
+  pressKey(ch);
+  playClick();
+  document.getElementById('typed').textContent += ch;
+  pos++;
+  const delay = ch === ' ' ? 180 : 100 + Math.random() * 120;
+  setTimeout(typeNext, delay);
+}
+</script>

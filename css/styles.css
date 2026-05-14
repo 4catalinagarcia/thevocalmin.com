@@ -239,18 +239,17 @@ a { color: inherit; text-decoration: none; }
   padding: 6rem 2rem 4rem;
 }
 
-/* The typewriter IS the hero background */
-.hero-typewriter-bg {
+/* The video IS the hero background */
+.hero-video-bg {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/images/Typewriter.jpg');
-  background-size: cover;
-  background-position: center 30%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   filter: grayscale(40%) contrast(1.1) brightness(0.35);
-  transform: scale(1.04);
-  transition: transform 8s ease;
+  pointer-events: none;
 }
-#hero:hover .hero-typewriter-bg { transform: scale(1.0); }
 
 /* Layered overlays for drama */
 .hero-vignette {
