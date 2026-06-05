@@ -779,6 +779,21 @@ body {
   margin-bottom: 2.5rem;
   line-height: 1.7;
 }
+.contact-address {
+  font-family: var(--body);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(240,240,240,0.65);
+  border-left: 3px solid var(--red);
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 2.5rem;
+  background: var(--dark-3);
+}
+.contact-address p:first-child {
+  font-weight: 600;
+  color: var(--white);
+}
+
 .form-group { margin-bottom: 0.75rem; }
 .contact-form input,
 .contact-form select,
@@ -958,7 +973,7 @@ body {
 <body>
 
   <!-- ALERT BAR -->
-  <div class="alert-bar">Coming Soon</div>
+  <div class="alert-bar">Coming Soon &mdash; Release Date 30 June 2026 (Estimate)</div>
 
   <!-- NAV -->
   <nav id="navbar">
@@ -1003,7 +1018,7 @@ body {
         <h1 class="hero-title">The Vocal<br>Minority</h1>
         <p class="hero-author">Jeff Kohler</p>
         <div class="hero-divider"></div>
-        <p class="hero-tagline">Some voices are meant to be silenced. This is the story of one that refused.</p>
+        <p class="hero-tagline">This is the only platform where I can share my story as seen through my eyes.</p>
         <div class="hero-btns">
           <a href="#order"   class="btn btn-red">Order Now</a>
           <a href="#excerpt" class="btn btn-outline">Read an Excerpt</a>
@@ -1103,13 +1118,16 @@ body {
         <h2>Jeff Kohler</h2>
         <div class="author-bio">
           <p>
-            Jeff Kohler is a writer, advocate, and lifelong truth-teller. Over the course of his life he has moved through worlds that rarely overlap &mdash; finding himself at the intersection of politics, community, and personal identity.
+            Jeff Kohler was born and raised in Canton, Ohio. He graduated from high school in 2005 from Canton Glenoak. He enlisted in the U.S. Navy that same year. After completing basic training and A school, he was assigned to USS San Antonio 1PD-17.
           </p>
           <p>
-            <em>The Vocal Minority</em> is his first book &mdash; a memoir years in the making and impossible to contain any longer.
+            In 2007, he received individual augmentee orders to the U.S. Army, specifically 1st Battalion, 5th Field Artillery, 1st Infantry Division, The Big Red One. After completing mobilization training, he deployed for 341 days to Multi-National Security Transition Command&ndash;Iraq-J6 (Communications).
           </p>
           <p>
-            Jeff writes about the experiences that shaped him, the systems that tried to define him, and the voice he refused to surrender.
+            After deployment, he separated from active duty and began service in the naval reserve. That same year, he began classes at The Ohio State University under the Post-9/11 GI Bill. In 2011, he was medically discharged from the U.S. Navy Reserve. In 2012, he graduated from The Ohio State University.
+          </p>
+          <p>
+            He is happily married and enjoys recreational diving among many hobbies in his spare time.
           </p>
         </div>
         <a href="#contact" class="btn btn-outline">Get in Touch</a>
@@ -1148,13 +1166,7 @@ body {
         <span class="excerpt-block-label">From the Opening</span>
         <div class="excerpt-text">
           <p>
-            There is a particular kind of silence that is manufactured. Not the silence of an empty room, or the silence between words when someone is thinking. This silence is built &mdash; brick by brick, policy by policy, dismissal by dismissal &mdash; by people who need you to disappear.
-          </p>
-          <p>
-            I spent the better part of my life learning to recognize it. And then I spent the rest of it refusing to honor it.
-          </p>
-          <p>
-            This is not a book about being a victim. It is a book about survival in the truest sense of the word: not merely enduring, but insisting on being seen.
+            To me, true evil is not the people who commit horrendous acts, but the people who have the chance to do something to stop it but don&rsquo;t. I have always considered myself a man of principle; a man of action.
           </p>
         </div>
         <div class="excerpt-fade"></div>
@@ -1172,7 +1184,7 @@ body {
         <span class="label" style="color:rgba(255,255,255,0.5);">Get Notified</span>
         <h2>Get Notified</h2>
         <p class="order-sub">Sign up to be the first to know when <em>The Vocal Minority</em> is available &mdash; and get exclusive updates from Jeff along the way.</p>
-        <form class="notify-form" id="notifyForm" action="https://formspree.io/f/jeffkohler09@gmail.com" method="post">
+        <form class="notify-form" id="notifyForm" action="https://formspree.io/f/thevocalminority@gmail.com" method="post">
           <div class="form-row">
             <input type="text"  name="name"  placeholder="Your Name"          required autocomplete="name" />
             <input type="email" name="email" placeholder="Your Email Address"  required autocomplete="email" />
@@ -1193,7 +1205,12 @@ body {
       <span class="label">Contact</span>
       <h2>Reach Out</h2>
       <p class="contact-sub">For media inquiries, speaking engagements, or just to say hello &mdash; Jeff wants to hear from you.</p>
-      <form class="contact-form" id="contactForm" action="https://formspree.io/f/jeffkohler09@gmail.com" method="post">
+      <div class="contact-address">
+        <p>Jeff Kohler</p>
+        <p>450 N. Brice Road #125</p>
+        <p>Blacklick, OH 43004</p>
+      </div>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/thevocalminority@gmail.com" method="post">
         <div class="form-group">
           <input type="text"  name="name"  placeholder="Your Name"  required />
         </div>
