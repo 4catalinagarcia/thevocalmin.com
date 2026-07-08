@@ -940,9 +940,23 @@ body {
 .footer-counter {
   display: flex;
   align-items: center;
+  gap: 0.45rem;
   opacity: 0.7;
+  background: var(--dark-3);
+  border: 1px solid var(--border-mid);
+  border-radius: 3px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.68rem;
 }
-.footer-counter img { height: 20px; }
+.footer-counter-label {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+.footer-counter-value {
+  font-weight: 700;
+  color: var(--red-bright);
+}
 
 /* ══════════════════════════════════════════
    RESPONSIVE
@@ -1261,7 +1275,8 @@ body {
       </nav>
       <p class="footer-copy">&copy; <span id="year"></span> Jeff Kohler. All rights reserved.</p>
       <div class="footer-counter">
-        <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fwww.thevocalmin.com&label=Unique+Visitors&icon=eye&color=%23c0392b" alt="Unique Visitor Count" />
+        <span class="footer-counter-label">Unique Visitors</span>
+        <span class="footer-counter-value" id="visitor-count">—</span>
       </div>
     </div>
   </footer>
@@ -1375,6 +1390,27 @@ body {
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Unique visitor counter — increments only once per browser (localStorage flag),
+    // every later reload just reads the current count without bumping it.
+    (function () {
+      const el = document.getElementById('visitor-count');
+      if (!el) return;
+      const NS = 'thevocalmin-com';
+      const KEY = 'unique-visitors';
+      const alreadyCounted = localStorage.getItem('tvm_uv_counted');
+      const endpoint = alreadyCounted
+        ? `https://abacus.jasoncameron.dev/get/${NS}/${KEY}`
+        : `https://abacus.jasoncameron.dev/hit/${NS}/${KEY}`;
+
+      fetch(endpoint)
+        .then(r => r.json())
+        .then(data => {
+          if (!alreadyCounted) localStorage.setItem('tvm_uv_counted', '1');
+          el.textContent = data.value.toLocaleString();
+        })
+        .catch(() => { el.textContent = '—'; });
+    })();
   </script>
 
 </body>
