@@ -12,6 +12,17 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="assets/images/TheVocalMinorityCover.jpg" />
   <link rel="apple-touch-icon" href="assets/images/TheVocalMinorityCover.jpg" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FVKHZWCBQ3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FVKHZWCBQ3');
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -926,6 +937,12 @@ body {
   opacity: 0.5;
   font-style: italic;
 }
+.footer-counter {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+}
+.footer-counter img { height: 20px; }
 
 /* ══════════════════════════════════════════
    RESPONSIVE
@@ -1243,6 +1260,9 @@ body {
         <a href="#contact">Contact</a>
       </nav>
       <p class="footer-copy">&copy; <span id="year"></span> Jeff Kohler. All rights reserved.</p>
+      <div class="footer-counter">
+        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fwww.thevocalmin.com&count_bg=%23C0392B&title_bg=%23131313&icon=&icon_color=%23f0f0f0&title=Visitors&edge_flat=true" alt="Visitor Count" />
+      </div>
     </div>
   </footer>
 
