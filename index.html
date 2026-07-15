@@ -159,6 +159,11 @@ body {
   text-transform: uppercase;
   color: var(--white);
 }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
 .nav-links {
   list-style: none;
   display: flex;
@@ -174,6 +179,13 @@ body {
   transition: color 0.18s;
 }
 .nav-links a:hover { color: var(--white); }
+.nav-social {
+  display: inline-flex;
+  align-items: center;
+  color: var(--white-dim);
+  transition: color 0.18s;
+}
+.nav-social:hover { color: var(--red-bright); }
 .nav-toggle {
   display: none;
   background: none;
@@ -884,6 +896,47 @@ body {
   color: #5cb85c;
 }
 .contact-success.show { display: block; }
+.security-notice {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(192, 57, 43, 0.08);
+  border-left: 3px solid var(--red);
+}
+.security-notice p {
+  color: var(--white-dim);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.security-notice strong { color: var(--red-bright); }
+
+/* ══════════════════════════════════════════
+   SOCIAL
+══════════════════════════════════════════ */
+#social {
+  padding: 5rem 2rem;
+  background: var(--dark);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.social-inner h2 {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--white);
+  margin-bottom: 1.75rem;
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--white-dim);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid var(--border-mid);
+  transition: border-color 0.18s, color 0.18s;
+}
+.social-link:hover { border-color: var(--red); color: var(--white); }
+.social-link svg { color: var(--red-bright); flex-shrink: 0; }
 
 /* ══════════════════════════════════════════
    FOOTER
@@ -991,7 +1044,7 @@ body {
 }
 
 @media (max-width: 540px) {
-  #about-book, #about-author, #praise, #excerpt, #order, #contact { padding: 5rem 1.5rem; }
+  #about-book, #about-author, #praise, #excerpt, #order, #contact, #social { padding: 5rem 1.5rem; }
   .meta-strip-inner { grid-template-columns: 1fr 1fr; padding: 0 1.5rem; }
   .pull-quote { padding: 5rem 1.5rem; }
   .excerpt-block { padding: 2rem 1.5rem; }
@@ -1010,14 +1063,23 @@ body {
   <nav id="navbar">
     <div class="nav-inner">
       <span class="nav-logo">The Vocal Minority</span>
-      <ul class="nav-links">
-        <li><a href="#about-book">The Book</a></li>
-        <li><a href="#excerpt">Excerpt</a></li>
-        <li><a href="#about-author">The Author</a></li>
-        <li><a href="https://store.bookbaby.com/book/the-vocal-minority" target="_blank" rel="noopener noreferrer">Order</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Open menu">&#9776;</button>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#about-book">The Book</a></li>
+          <li><a href="#excerpt">Excerpt</a></li>
+          <li><a href="#about-author">The Author</a></li>
+          <li><a href="https://store.bookbaby.com/book/the-vocal-minority" target="_blank" rel="noopener noreferrer">Order</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="https://www.instagram.com/the.vocal.minority_2026/" target="_blank" rel="noopener" class="nav-social" aria-label="Follow on Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4.2"/>
+            <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Open menu">&#9776;</button>
+      </div>
     </div>
   </nav>
 
@@ -1260,6 +1322,22 @@ body {
       <div class="security-notice">
         <p><strong>Important Security Notice:</strong> The author of this website will NEVER contact you directly via email, social media, or text message to ask for money, donations, financial information, or personal details. If you receive any such request, it is a scam. Please stay vigilant against impersonators and scams.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section id="social">
+    <div class="social-inner reveal">
+      <span class="label">Follow Along</span>
+      <h2>Stay Connected</h2>
+      <a href="https://www.instagram.com/the.vocal.minority_2026/" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+        </svg>
+        <span>@the.vocal.minority_2026</span>
+      </a>
     </div>
   </section>
 
