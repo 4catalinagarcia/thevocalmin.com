@@ -786,6 +786,20 @@ a { color: inherit; text-decoration: none; }
 }
 .order-success.show, .contact-success.show { display: block; }
 
+.security-notice {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(155, 26, 26, 0.08);
+  border-left: 3px solid var(--red);
+}
+.security-notice p {
+  color: var(--offwhite);
+  opacity: 0.85;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.security-notice strong { color: var(--red-bright); }
+
 /* ═══════════════════════════════════════════════════════════════
    CONTACT
 ═══════════════════════════════════════════════════════════════ */
