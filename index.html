@@ -694,6 +694,54 @@ body {
 .excerpt-cta { margin-top: 2rem; }
 
 /* ══════════════════════════════════════════
+   MEDIA
+══════════════════════════════════════════ */
+#media {
+  padding: 8rem 2.5rem;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+.media-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.media-inner h2 {
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 2.5rem;
+}
+.media-card {
+  border-left: 3px solid var(--red);
+  padding: 2.5rem;
+  background: var(--dark-2);
+}
+.media-card-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white-dimmer);
+  margin-bottom: 1rem;
+  display: block;
+}
+.media-card-title {
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.media-card-desc {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(240,240,240,0.7);
+  margin-bottom: 1.75rem;
+}
+
+/* ══════════════════════════════════════════
    ORDER / CTA
 ══════════════════════════════════════════ */
 #order {
@@ -1044,7 +1092,7 @@ body {
 }
 
 @media (max-width: 540px) {
-  #about-book, #about-author, #praise, #excerpt, #order, #contact, #social { padding: 5rem 1.5rem; }
+  #about-book, #about-author, #praise, #excerpt, #media, #order, #contact, #social { padding: 5rem 1.5rem; }
   .meta-strip-inner { grid-template-columns: 1fr 1fr; padding: 0 1.5rem; }
   .pull-quote { padding: 5rem 1.5rem; }
   .excerpt-block { padding: 2rem 1.5rem; }
@@ -1068,6 +1116,7 @@ body {
           <li><a href="#about-book">The Book</a></li>
           <li><a href="#excerpt">Excerpt</a></li>
           <li><a href="#about-author">The Author</a></li>
+          <li><a href="#media">Media</a></li>
           <li><a href="https://store.bookbaby.com/book/the-vocal-minority" target="_blank" rel="noopener noreferrer">Order</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1090,6 +1139,7 @@ body {
       <li><a href="#about-book"   class="mobile-link">The Book</a></li>
       <li><a href="#excerpt"      class="mobile-link">Excerpt</a></li>
       <li><a href="#about-author" class="mobile-link">The Author</a></li>
+      <li><a href="#media"        class="mobile-link">Media</a></li>
       <li><a href="https://store.bookbaby.com/book/the-vocal-minority" class="mobile-link" target="_blank" rel="noopener">Order</a></li>
       <li><a href="#contact"      class="mobile-link">Contact</a></li>
     </ul>
@@ -1216,6 +1266,22 @@ body {
           </p>
         </div>
         <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA -->
+  <section id="media">
+    <div class="media-inner reveal">
+      <span class="label">In The Media</span>
+      <h2>Hear Jeff&rsquo;s Story</h2>
+      <div class="media-card">
+        <span class="media-card-label">Sexual Assault Survivor Stories (SASS) Podcast &mdash; Episode 204</span>
+        <h3 class="media-card-title">The Courage to Become The Vocal Minority</h3>
+        <p class="media-card-desc">
+          Jeff joins host Dave Markel to talk about his experience with sexual assault within military institutions, the fight to be believed, and the journey toward healing chronicled in <em>The Vocal Minority</em>.
+        </p>
+        <a href="https://sexassaultsurvivorstories.libsyn.com/204-jeff-kohler-the-courage-to-become-the-vocal-minority" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Listen to the Episode</a>
       </div>
     </div>
   </section>
@@ -1352,6 +1418,7 @@ body {
         <a href="#about-book">The Book</a>
         <a href="#excerpt">Excerpt</a>
         <a href="#about-author">The Author</a>
+        <a href="#media">Media</a>
         <a href="https://store.bookbaby.com/book/the-vocal-minority" target="_blank" rel="noopener">Order</a>
         <a href="#contact">Contact</a>
       </nav>
